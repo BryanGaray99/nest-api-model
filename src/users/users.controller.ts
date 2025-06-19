@@ -8,12 +8,14 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
+  BadRequestException,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiResponse as CustomApiResponse } from '../common/interfaces/api-response.interface';
+import { validateSync } from 'class-validator';
 
 @ApiTags('users')
 @Controller('api/users')
@@ -25,6 +27,11 @@ export class UsersController {
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({ status: 201, description: 'User created successfully' })
   create(@Body() createUserDto: CreateUserDto): CustomApiResponse {
+    // Validación manual para asegurar que address no falte
+    const errors = validateSync(createUserDto as any);
+    if (errors.length > 0) {
+      throw new BadRequestException(errors);
+    }
     const user = this.usersService.create(createUserDto);
     return {
       success: true,
@@ -67,6 +74,7 @@ export class UsersController {
   @ApiParam({ name: 'id', description: 'User ID' })
   @ApiResponse({ status: 200, description: 'User updated successfully' })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto): CustomApiResponse {
+    console.log('PATCH recibido en updateUser:', JSON.stringify(updateUserDto, null, 2));
     const user = this.usersService.update(id, updateUserDto);
     return {
       success: true,

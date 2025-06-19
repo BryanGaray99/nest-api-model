@@ -18,11 +18,16 @@ const swagger_1 = require("@nestjs/swagger");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
+const class_validator_1 = require("class-validator");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
     create(createUserDto) {
+        const errors = (0, class_validator_1.validateSync)(createUserDto);
+        if (errors.length > 0) {
+            throw new common_1.BadRequestException(errors);
+        }
         const user = this.usersService.create(createUserDto);
         return {
             success: true,
@@ -50,6 +55,7 @@ let UsersController = class UsersController {
         };
     }
     update(id, updateUserDto) {
+        console.log('PATCH recibido en updateUser:', JSON.stringify(updateUserDto, null, 2));
         const user = this.usersService.update(id, updateUserDto);
         return {
             success: true,

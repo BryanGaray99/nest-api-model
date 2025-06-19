@@ -39,6 +39,7 @@ let CartService = class CartService {
             cart.items.push(newItem);
         }
         cart.totalAmount = cart.items.reduce((total, item) => total + item.subtotal, 0);
+        cart.itemCount = cart.items.reduce((count, item) => count + item.quantity, 0);
         cart.updatedAt = new Date();
         return cart;
     }
@@ -54,6 +55,7 @@ let CartService = class CartService {
         cart.items[itemIndex].quantity = updateItemDto.quantity;
         cart.items[itemIndex].subtotal = cart.items[itemIndex].price * updateItemDto.quantity;
         cart.totalAmount = cart.items.reduce((total, item) => total + item.subtotal, 0);
+        cart.itemCount = cart.items.reduce((count, item) => count + item.quantity, 0);
         cart.updatedAt = new Date();
         return cart;
     }
@@ -68,6 +70,7 @@ let CartService = class CartService {
         }
         cart.items.splice(itemIndex, 1);
         cart.totalAmount = cart.items.reduce((total, item) => total + item.subtotal, 0);
+        cart.itemCount = cart.items.reduce((count, item) => count + item.quantity, 0);
         cart.updatedAt = new Date();
         return cart;
     }
@@ -78,6 +81,7 @@ let CartService = class CartService {
         }
         cart.items = [];
         cart.totalAmount = 0;
+        cart.itemCount = 0;
         cart.updatedAt = new Date();
         return cart;
     }
@@ -87,6 +91,7 @@ let CartService = class CartService {
             userId,
             items: [],
             totalAmount: 0,
+            itemCount: 0,
             createdAt: new Date(),
             updatedAt: new Date(),
         };

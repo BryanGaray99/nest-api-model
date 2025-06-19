@@ -26,8 +26,20 @@ export class CategoriesService {
     },
   ];
 
-  findAll(): Category[] {
-    return this.categories.filter(category => category.isActive);
+  findAll(parentId?: string): Category[] {
+    let filteredCategories = this.categories.filter(category => category.isActive);
+    
+    if (parentId !== undefined) {
+      if (parentId === 'null') {
+        // Get root categories (no parent)
+        filteredCategories = filteredCategories.filter(category => !category.parentId);
+      } else {
+        // Get child categories with specific parent
+        filteredCategories = filteredCategories.filter(category => category.parentId === parentId);
+      }
+    }
+    
+    return filteredCategories;
   }
 
   findOne(id: string): Category {

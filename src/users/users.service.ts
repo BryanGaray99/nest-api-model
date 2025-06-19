@@ -56,9 +56,15 @@ export class UsersService {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
 
+    let updatedAddress = this.users[userIndex].address;
+    if (updateUserDto.address) {
+      updatedAddress = { ...updatedAddress, ...updateUserDto.address };
+    }
+
     this.users[userIndex] = {
       ...this.users[userIndex],
       ...updateUserDto,
+      address: updatedAddress,
       updatedAt: new Date(),
     };
 

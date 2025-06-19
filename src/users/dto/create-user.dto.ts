@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsOptional, ValidateNested } from 'class-validator';
+import { IsString, IsEmail, IsOptional, ValidateNested, IsDefined } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
@@ -43,6 +43,7 @@ export class CreateUserDto {
   phone?: string;
 
   @ApiProperty({ type: AddressDto })
+  @IsDefined()
   @ValidateNested()
   @Type(() => AddressDto)
   address: AddressDto;

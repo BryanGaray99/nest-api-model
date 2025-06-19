@@ -3,6 +3,7 @@ export interface Cart {
     userId: string;
     items: CartItem[];
     totalAmount: number;
+    itemCount: number;
     createdAt: Date;
     updatedAt: Date;
 }

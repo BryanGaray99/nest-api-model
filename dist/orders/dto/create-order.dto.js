@@ -77,12 +77,14 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({ type: [OrderItemDto] }),
     (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ArrayMinSize)(1),
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => OrderItemDto),
     __metadata("design:type", Array)
 ], CreateOrderDto.prototype, "items", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ type: AddressDto }),
+    (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.ValidateNested)(),
     (0, class_transformer_1.Type)(() => AddressDto),
     __metadata("design:type", AddressDto)

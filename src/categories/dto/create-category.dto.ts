@@ -33,5 +33,5 @@ export class CreateCategoryDto {
   })
   @IsOptional()
   @IsBoolean()
-  isActive?: boolean = true;
+  isActive?: boolean;
 }

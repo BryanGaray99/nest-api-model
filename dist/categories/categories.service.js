@@ -31,8 +31,17 @@ let CategoriesService = class CategoriesService {
             },
         ];
     }
-    findAll() {
-        return this.categories.filter(category => category.isActive);
+    findAll(parentId) {
+        let filteredCategories = this.categories.filter(category => category.isActive);
+        if (parentId !== undefined) {
+            if (parentId === 'null') {
+                filteredCategories = filteredCategories.filter(category => !category.parentId);
+            }
+            else {
+                filteredCategories = filteredCategories.filter(category => category.parentId === parentId);
+            }
+        }
+        return filteredCategories;
     }
     findOne(id) {
         const category = this.categories.find(c => c.id === id);

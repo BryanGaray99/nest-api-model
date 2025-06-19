@@ -8,8 +8,9 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
+  Query,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -36,9 +37,10 @@ export class CategoriesController {
 
   @Get()
   @ApiOperation({ summary: 'Get all categories' })
+  @ApiQuery({ name: 'parentId', required: false, description: 'Filter by parent category ID. Use "null" for root categories.' })
   @ApiResponse({ status: 200, description: 'Categories retrieved successfully' })
-  findAll(): CustomApiResponse {
-    const categories = this.categoriesService.findAll();
+  findAll(@Query('parentId') parentId?: string): CustomApiResponse {
+    const categories = this.categoriesService.findAll(parentId);
     return {
       success: true,
       data: categories,

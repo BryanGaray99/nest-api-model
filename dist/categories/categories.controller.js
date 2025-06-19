@@ -31,8 +31,8 @@ let CategoriesController = class CategoriesController {
             timestamp: new Date().toISOString(),
         };
     }
-    findAll() {
-        const categories = this.categoriesService.findAll();
+    findAll(parentId) {
+        const categories = this.categoriesService.findAll(parentId);
         return {
             success: true,
             data: categories,
@@ -76,9 +76,11 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOperation)({ summary: 'Get all categories' }),
+    (0, swagger_1.ApiQuery)({ name: 'parentId', required: false, description: 'Filter by parent category ID. Use "null" for root categories.' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Categories retrieved successfully' }),
+    __param(0, (0, common_1.Query)('parentId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Object)
 ], CategoriesController.prototype, "findAll", null);
 __decorate([

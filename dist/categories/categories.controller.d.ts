@@ -6,7 +6,7 @@ export declare class CategoriesController {
     private readonly categoriesService;
     constructor(categoriesService: CategoriesService);
     create(createCategoryDto: CreateCategoryDto): CustomApiResponse;
-    findAll(): CustomApiResponse;
+    findAll(parentId?: string): CustomApiResponse;
     findOne(id: string): CustomApiResponse;
     update(id: string, updateCategoryDto: UpdateCategoryDto): CustomApiResponse;
     remove(id: string): void;

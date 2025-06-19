@@ -13,9 +13,6 @@ exports.CreateCategoryDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
 class CreateCategoryDto {
-    constructor() {
-        this.isActive = true;
-    }
 }
 exports.CreateCategoryDto = CreateCategoryDto;
 __decorate([
