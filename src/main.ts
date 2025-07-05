@@ -46,9 +46,12 @@ async function bootstrap() {
       forbidUnknownValues: true,
       transform: true,
       transformOptions: {
-        enableImplicitConversion: true,
+        enableImplicitConversion: false, // Cambiar a false para ser más estricto
       },
       errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+      skipMissingProperties: false, // No saltar propiedades faltantes
+      skipNullProperties: false, // No saltar propiedades null
+      skipUndefinedProperties: false, // No saltar propiedades undefined
     }),
   );
 

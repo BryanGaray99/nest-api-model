@@ -52,7 +52,7 @@ let ProductsService = class ProductsService {
         const newProduct = {
             id: (0, uuid_1.v4)(),
             ...createProductDto,
-            isActive: createProductDto.isActive ?? true,
+            isActive: createProductDto.isActive,
             createdAt: new Date(),
             updatedAt: new Date(),
         };

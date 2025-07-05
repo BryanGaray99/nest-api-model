@@ -34,6 +34,7 @@ __decorate([
         example: 'Latest Apple iPhone with advanced features',
     }),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateProductDto.prototype, "description", void 0);
 __decorate([
@@ -52,6 +53,7 @@ __decorate([
         example: 'cat-123',
     }),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateProductDto.prototype, "categoryId", void 0);
 __decorate([
@@ -71,6 +73,7 @@ __decorate([
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsUrl)(),
     __metadata("design:type", String)
 ], CreateProductDto.prototype, "imageUrl", void 0);
 __decorate([

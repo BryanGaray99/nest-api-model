@@ -49,7 +49,7 @@ export class ProductsService {
     const newProduct: Product = {
       id: uuidv4(),
       ...createProductDto,
-      isActive: createProductDto.isActive ?? true,
+      isActive: createProductDto.isActive,
       createdAt: new Date(),
       updatedAt: new Date(),
     };

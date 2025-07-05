@@ -38,9 +38,12 @@ async function bootstrap() {
         forbidUnknownValues: true,
         transform: true,
         transformOptions: {
-            enableImplicitConversion: true,
+            enableImplicitConversion: false,
         },
         errorHttpStatusCode: common_3.HttpStatus.UNPROCESSABLE_ENTITY,
+        skipMissingProperties: false,
+        skipNullProperties: false,
+        skipUndefinedProperties: false,
     }));
     app.useGlobalFilters(new http_exception_filter_1.HttpExceptionFilter());
     app.useGlobalInterceptors(new transform_interceptor_1.TransformInterceptor());
